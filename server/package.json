@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "langchin ai agent server",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx --env-file=.env --watch src/server.ts",
+    "build": "tsc",
+    "start": "node --env-file=.env dist/server.js"
+  },
+  "keywords": [
+    "langchain",
+    "ai",
+    "agent",
+    "openai",
+    "gemini"
+  ],
+  "author": "arijit mondal",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
