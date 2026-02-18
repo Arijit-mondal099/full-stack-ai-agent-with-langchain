@@ -19,10 +19,16 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@langchain/core": "^1.1.26",
+    "@langchain/google-genai": "^2.1.19",
+    "@langchain/groq": "^1.1.1",
+    "@langchain/langgraph": "^1.1.5",
     "@scalekit-sdk/node": "^2.2.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "langchain": "^1.2.25",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",

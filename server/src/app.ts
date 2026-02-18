@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import { globalErrorHandler } from "./middlewares/error.middleware";
 import authRouter from "./routes/auth.route";
+import agentRouter from "./routes/agent.route";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(
 );
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/agent", agentRouter);
 
 app.use(globalErrorHandler);
 
