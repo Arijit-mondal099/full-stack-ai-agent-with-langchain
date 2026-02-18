@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import { globalErrorHandler } from "./middlewares/error.middleware";
+import authRouter from "./routes/auth.route";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   }),
 );
+
+app.use("/api/v1/auth", authRouter);
 
 app.use(globalErrorHandler);
 

@@ -1,10 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 
 export const Hero = () => {
-  const router = useRouter();
+
+  const handleLogin = () => {
+    window.location.href = process.env.NODE_ENV === "development" ? "http://localhost:4000/api/v1/auth/login" : `${process.env.API_URI}/api/v1/auth/login`;
+  }
 
   return (
     <>
@@ -17,7 +19,7 @@ export const Hero = () => {
       </p>
 
       <div className="space-x-4">
-        <Button onClick={() => router.push("/chat")}>Get Started</Button>
+        <Button onClick={handleLogin}>Get Started</Button>
         <Button>Learn more</Button>
       </div>
     </>
