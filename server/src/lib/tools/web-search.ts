@@ -1,4 +1,4 @@
-import { ENV } from "./env";
+import { ENV } from "../env";
 
 export type WebSearchResponse = {
   title: string;
@@ -6,7 +6,6 @@ export type WebSearchResponse = {
   snippet: string;
 };
 
-// tool for web search
 export const webSearch = async (args: {
   query: string;
   k?: number;
@@ -22,6 +21,7 @@ export const webSearch = async (args: {
 
   try {
     const response = await fetch("https://api.tavily.com/search", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,27 +31,27 @@ export const webSearch = async (args: {
         search_depth: "basic",
         include_answer: false,
         include_images: false,
-        max_results: 3,
+        max_results: args.k ?? 3,
         include_raw_content: false,
       }),
     });
 
     if (!response.ok) return [];
 
-    const data = (await response.json()) as unknown as {
-      result: {
+    const data = (await response.json()) as {
+      results: {
         title: unknown;
         url: unknown;
         content: unknown;
-      };
+      }[];
     };
 
-    const results = Array.isArray(data.result) ? data.result : [];
+    const results = Array.isArray(data.results) ? data.results : [];
 
     return results.map((res) => {
       const title = typeof res.title === "string" ? res.title : "result";
-      const url = typeof res.title === "string" ? res.title : "result";
-      const content = typeof res.title === "string" ? res.title : "result";
+      const url = typeof res.url === "string" ? res.url : "";
+      const content = typeof res.content === "string" ? res.content : "";
 
       return {
         title,
@@ -59,6 +59,7 @@ export const webSearch = async (args: {
         snippet: content.slice(0, 350),
       };
     }).filter(filteredRes => filteredRes.url.length > 0);
+
   } catch (error) {
     console.error("Error :: from tavily web search -->", error);
     return [];

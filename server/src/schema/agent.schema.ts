@@ -10,8 +10,8 @@ export const RequestSchema = z.object({
 });
 
 export const DraftSchema = z.object({
-  reply: z.string().min(1),
-  sources: z.array(z.string().min(1).max(3)),
+  reply: z.string(),
+  sources: z.array(z.string()).max(3),
 });
 
 export type AgentResponse = z.infer<typeof DraftSchema>;
